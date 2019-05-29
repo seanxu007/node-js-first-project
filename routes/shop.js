@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
     const products = adminData.products;
     // Pug engine
     // res.render('shop', {prods: products, docTitle: 'Shop', path: '/'});
-    // Hbs engine
+    // Hbs engine or Ejs engine
     res.render('shop', {
         prods: products,
         pageTitle: 'Shop',
@@ -20,7 +20,8 @@ router.get('/', (req, res, next) => {
         hasProducts: products.length > 0,
         activeShop: true,
         productCSS: true
-      });
+    });
+
 });
 
 module.exports = router;
