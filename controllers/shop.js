@@ -2,37 +2,40 @@ const Product = require('../models/product');
 const Cart = require('../models/cart');
 
 exports.getProducts = (req, res, next) => {
-    const products = Product.fetchAll(products => {
-        // Pug engine
-        // res.render('shop', {prods: products, docTitle: 'Shop', path: '/'});
-        // Hbs engine or Ejs engine
-        res.render('shop/product-list', {
-            prods: products,
-            pageTitle: 'Shop',
-            path: '/products',
-        });
-    });
+    Product.fetchAll()
+        .then(([rows, fieldData]) => {
+            res.render('shop/product-list', {
+                prods: rows,
+                pageTitle: 'Shop',
+                path: '/products',
+            });
+        })
+        .catch(err => console.log(err));
 };
 
 exports.getProduct = (req, res, next) => {
     const prodId = req.params.id;
-    Product.findById(prodId, product => {
-        res.render('shop/product-detail', {
-            product: product,
-            path: '/products',
-            pageTitle: product.title
-        });
-    });
+    Product.findById(prodId)
+        .then(([product]) => {
+            res.render('shop/product-detail', {
+                product: product[0],
+                path: '/products',
+                pageTitle: product.title
+            });
+        })
+        .catch(err => console.log(err));
 };
 
 exports.getIndex = (req, res, next) => {
-    const products = Product.fetchAll(products => {
-        res.render('shop/index', {
-            prods: products,
-            pageTitle: 'Shop',
-            path: '/',
-        });
-    });
+    Product.fetchAll()
+        .then(([rows, fieldData]) => {
+            res.render('shop/index', {
+                prods: rows,
+                pageTitle: 'Shop',
+                path: '/',
+            });
+        })
+        .catch(err => console.log(err));
 };
 
 exports.getCart = (req, res, next) => {
