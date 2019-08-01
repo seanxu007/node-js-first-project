@@ -10,7 +10,7 @@
         <% if (errorMessage) { %>
             <div class="user-message user-message--error"><%= errorMessage %></div>
         <% } %>
-        <form class="product-form" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST">
+        <form class="product-form" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST" enctype="multipart/form-data">
             <div class="form-control">
                 <label for="title">Title</label>
                 <input
@@ -22,6 +22,13 @@
                     value="<% if (typeof product !== 'undefined') { %><%= product.title %><% } %>">
             </div>
             <div class="form-control">
+                <label for="image">Image</label>
+                <input
+                    type="file"
+                    name="image"
+                    id="image">
+            </div>
+            <!-- <div class="form-control">
                 <label for="imageUrl">Image URL</label>
                 <input
                     class="<%= (typeof validationErrors !== 'undefined')
@@ -30,7 +37,7 @@
                     name="imageUrl"
                     id="imageUrl"
                     value="<% if (typeof product !== 'undefined') { %><%= product.imageUrl %><% } %>">
-            </div>
+            </div> -->
             <div class="form-control">
                 <label for="price">Price</label>
                 <input
