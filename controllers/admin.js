@@ -138,7 +138,7 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.deleteProduct = (req, res, next) => {
-    const prodId = req.body.productId;
+    const prodId = req.params.productId;
     Product.find({_id: prodId, userId: req.user._id})
         .then(product => {
             if (!product) {
@@ -148,11 +148,9 @@ exports.deleteProduct = (req, res, next) => {
             return Product.deleteOne({_id: prodId, userId: req.user._id});
         })
         .then(result => {
-            res.redirect('/admin/products');
+            res.status(200).json({success: true});
         })
         .catch(err=> {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+            res.status(500).json({success: false});
         });
 };
