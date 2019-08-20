@@ -14,7 +14,7 @@ exports.getProducts = (req, res, next) => {
     Product.find()
         .count()
         .then(productsCount => {
-            totalProduct = productsCount;
+            totalProducts = productsCount;
             return Product.find()
             .skip((page - 1) * PAGE_SIZE)
             .limit(PAGE_SIZE)
@@ -62,7 +62,7 @@ exports.getIndex = (req, res, next) => {
     Product.find()
         .count()
         .then(productsCount => {
-            totalProduct = productsCount;
+            totalProducts = productsCount;
             return Product.find()
             .skip((page - 1) * PAGE_SIZE)
             .limit(PAGE_SIZE)
