@@ -1,5 +1,5 @@
 const Product = require('../models/product');
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 const fileHelper = require('../util/file');
 
 exports.getAddProduct = (req, res, next) => {

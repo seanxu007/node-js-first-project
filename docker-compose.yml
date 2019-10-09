@@ -1,0 +1,10 @@
+version: '3'
+
+services: 
+  nodejs:
+    image: node
+    restart: always
+    command: npm run start-dev
+    volumes:
+      - .:/app
+    working_dir: /app
