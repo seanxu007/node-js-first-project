@@ -105,7 +105,7 @@ app.use((error, req, res, next) => {
     res.status(500).render('500', {pageTitle: 'Some Error Occured!', path: '/500', isAuthenticated: req.isLoggedIn});
 });
 
-mongoose.connect(MONGODB_URI)
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
         // https.createServer({ key: privateKey, cert: certificate }, app).listen(process.env.PORT || 3000);
         app.listen(process.env.PORT || 3000);
