@@ -16,6 +16,7 @@ const morgan = require('morgan');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
+require('dotenv').config();
 
 const MONGODB_URI = 
     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-01e0u.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
